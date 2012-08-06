@@ -73,70 +73,75 @@ class BootstrapMW_Template extends QuickTemplate {
 
 		$this->html('headelement');
 ?>
+
+
+
 <div class="navbar navbar-fixed-top">
-	<div class="navbar-inner">
-		<div class="container">
+  <div class="navbar-inner">
+    <div class="container-fluid">
 			<!-- .btn-navbar is used as the toggle for collapsed navbar content -->
 			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</a>
-		<a class="brand" href="<?php echo $this->data['nav_urls']['mainpage']['href'] ?>" title="<?php echo $wgSitename ?>"><img src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/images/logo.png"/><?php echo $wgSitenameshort ?: $wgSitename; ?></a>
+    <a class="brand" href="<?php echo $this->data['nav_urls']['mainpage']['href'] ?>" title="<?php echo $wgSitename ?>">
+      <?php echo $wgSitenameshort ?: $wgSitename; ?>
+    </a>
 
 		<div class="nav-collapse">
 			<ul class="nav">
 				<li>
 				<a href="<?php echo $wgPsuBasePath; ?>">Home</a>
 				</li>
-				<?php
-					echo $this->nav( $this->get_page_links( 'Bootstrap:TitleBar' ) );
-				?>
+				<?php echo $this->nav( $this->get_page_links( 'Bootstrap:TitleBar' ) ); ?>
 			</ul>
 			
-	<?php
+      <?php
+      if($wgUser->isLoggedIn()) {
+        if ( count( $this->data['personal_urls'] ) > 0 ) {
+          $user_icon = '<span class="user-icon"><img src="https://secure.gravatar.com/avatar/'.md5(strtolower( $wgUser->getName()) . '@bse.vic.edu.au').'.jpg?s=20&r=g"/></span>';
+          $name = strtolower( $wgUser->getName() );
+          $user_nav = $this->get_array_links( $this->data['personal_urls'], $user_icon . $name, 'user' );
+        ?>
+        <ul<?php $this->html('userlangattributes') ?> class="nav pull-right">
+          <?php echo $user_nav; ?>
+        </ul>
+        <?php
+        }
+        ?>
 
-	if($wgUser->isLoggedIn()) {
-		if ( count( $this->data['personal_urls'] ) > 0 ) {
-			$user_icon = '<span class="user-icon"><img src="https://secure.gravatar.com/avatar/'.md5(strtolower( $wgUser->getName()) . '@plymouth.edu').'.jpg?s=20&r=g"/></span>';
-			$name = strtolower( $wgUser->getName() );
-			$user_nav = $this->get_array_links( $this->data['personal_urls'], $user_icon . $name, 'user' );
-		?>
-		<ul<?php $this->html('userlangattributes') ?> class="nav pull-right">
-			<?php echo $user_nav; ?>
-		</ul>
-		<?php
-		}
-		?>
+        <?php
+        if ( count( $this->data['content_actions']) > 0 ) {
+          $content_nav = $this->get_array_links( $this->data['content_actions'], 'Page', 'page' );
+        ?>
+          <ul class="nav pull-right content-actions"><?php echo $content_nav; ?></ul>
+        <?php
+        }
+      } else {  // else if is logged in
+        ?>
+          <ul class="pull-right">
+            <li>
+              <?php echo Linker::linkKnown(
+                SpecialPage::getTitleFor( 'Userlogin' ),
+                wfMsg( 'login' )
+              ) ?>
+            </li>
+          </ul>
+        <?php
+      }
+      ?>
+    </div>
 
-		<?php
-		if ( count( $this->data['content_actions']) > 0 ) {
-			$content_nav = $this->get_array_links( $this->data['content_actions'], 'Page', 'page' );
-		?>
-			<ul class="nav pull-right content-actions"><?php echo $content_nav; ?></ul>
-		<?php
-		}
-	} else {  // else if is logged in
-		?>
-			<ul class="pull-right">
-				<li>
-					<?php echo Linker::linkKnown(
-						SpecialPage::getTitleFor( 'Userlogin' ),
-						wfMsg( 'login' )
-					) ?>
-				</li>
-			</ul>
-		<?php
-	}
-	?>
-			</div>
 			<form class="navbar-search pull-right" action="<?php $this->text( 'wgScript' ) ?>" id="search-form">
 				<input type="text" placeholder="Search" name="search" onchange="$('#search-form').submit()" />
 			</form>
 			
 		</div>
 	</div>
-</div><!-- topbar -->
+</div>
+<!-- topbar -->
+
 <?php
 if( $subnav_links = $this->get_page_links('Bootstrap:Subnav') ) {
 ?>
@@ -152,7 +157,7 @@ if( $subnav_links = $this->get_page_links('Bootstrap:Subnav') ) {
 }//end if
 ?>
 <div id="wiki-outer-body">
-    <div id="wiki-body" class="container">
+    <div id="wiki-body" class="container-fluid">
       <?php if( $this->data['sitenotice'] ) { ?><div id="siteNotice" class="alert-message warning"><?php $this->html('sitenotice') ?></div><?php } ?>
 			<?php if ( $this->data['undelete'] ): ?>
 			<!-- undelete -->
@@ -190,7 +195,7 @@ if( $subnav_links = $this->get_page_links('Bootstrap:Subnav') ) {
     </div><!-- container -->
 </div>
     <div class="bottom">
-      <div class="container">
+      <div class="container-fluid">
         <?php
         $this->includePage('Bootstrap:Footer');
         ?>
