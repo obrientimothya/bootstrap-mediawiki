@@ -100,7 +100,7 @@ class BootstrapMW_Template extends QuickTemplate {
 <?php
   if($wgUser->isLoggedIn()) {
         if ( count( $this->data['personal_urls'] ) > 0 ) {
-          $user_icon = '<i class="icon-user"></i>';
+          $user_icon = '<i class="icon-user icon-white"></i> ';
           $name = strtolower( $wgUser->getName() );
           $user_nav = $this->get_array_links( $this->data['personal_urls'], $user_icon . $name, 'user' );
         ?>
