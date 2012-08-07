@@ -97,8 +97,8 @@ class BootstrapMW_Template extends QuickTemplate {
 				<?php echo $this->nav( $this->get_page_links( 'Bootstrap:TitleBar' ) ); ?>
 			</ul>
 			
-      <?php
-      if($wgUser->isLoggedIn()) {
+<?php
+  if($wgUser->isLoggedIn()) {
         if ( count( $this->data['personal_urls'] ) > 0 ) {
           $user_icon = '<span class="user-icon"><img src="https://secure.gravatar.com/avatar/'.md5(strtolower( $wgUser->getName()) . '@bse.vic.edu.au').'.jpg?s=20&r=g"/></span>';
           $name = strtolower( $wgUser->getName() );
@@ -183,6 +183,9 @@ class BootstrapMW_Template extends QuickTemplate {
 
 <footer>
 <?php $this->includePage('Bootstrap:Footer'); ?>
+<p>
+<?php echo Linker::linkKnown(SpecialPage::getTitleFor( 'Userlogin' ),wfMsg( 'login' )) ?>
+</p>
 </footer>
 
 
