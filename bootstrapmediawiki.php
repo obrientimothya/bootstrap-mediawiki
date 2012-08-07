@@ -100,7 +100,7 @@ class BootstrapMW_Template extends QuickTemplate {
 <?php
   if($wgUser->isLoggedIn()) {
         if ( count( $this->data['personal_urls'] ) > 0 ) {
-          $user_icon = '<span class="user-icon"><img src="https://secure.gravatar.com/avatar/'.md5(strtolower( $wgUser->getName()) . '@bse.vic.edu.au').'.jpg?s=20&r=g"/></span>';
+          $user_icon = '<i class="icon-user"></i>';
           $name = strtolower( $wgUser->getName() );
           $user_nav = $this->get_array_links( $this->data['personal_urls'], $user_icon . $name, 'user' );
         ?>
@@ -180,9 +180,6 @@ class BootstrapMW_Template extends QuickTemplate {
 
 <footer>
 <?php $this->includePage('Bootstrap:Footer'); ?>
-<p>
-<?php echo Linker::linkKnown(SpecialPage::getTitleFor( 'UserLogin' ),wfMsg( 'login' )) ?>
-</p>
 </footer>
 
 
