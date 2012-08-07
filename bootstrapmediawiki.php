@@ -122,7 +122,7 @@ class BootstrapMW_Template extends QuickTemplate {
         ?>
           <ul class="pull-right">
             <li>
-              <?php echo Linker::linkKnown(SpecialPage::getTitleFor( 'Userlogin' ), wfMsg( 'login' ), array('class' => 'btn') ) ?>
+              <?php echo Linker::linkKnown(SpecialPage::getTitleFor( 'Userlogin' ), '<i class="icon-user"></i> Log in', array('class' => 'btn') ) ?>
             </li>
           </ul>
         <?php
