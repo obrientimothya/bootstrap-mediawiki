@@ -122,10 +122,7 @@ class BootstrapMW_Template extends QuickTemplate {
         ?>
           <ul class="pull-right">
             <li>
-              <?php echo Linker::linkKnown(
-                SpecialPage::getTitleFor( 'Userlogin' ),
-                wfMsg( 'login' )
-              ) ?>
+              <?php echo Linker::linkKnown(SpecialPage::getTitleFor( 'Userlogin' ), wfMsg( 'login' ), array('class' => 'btn') ) ?>
             </li>
           </ul>
         <?php
@@ -184,7 +181,7 @@ class BootstrapMW_Template extends QuickTemplate {
 <footer>
 <?php $this->includePage('Bootstrap:Footer'); ?>
 <p>
-<?php echo Linker::linkKnown(SpecialPage::getTitleFor( 'Userlogin' ),wfMsg( 'login' )) ?>
+<?php echo Linker::linkKnown(SpecialPage::getTitleFor( 'UserLogin' ),wfMsg( 'login' )) ?>
 </p>
 </footer>
 
