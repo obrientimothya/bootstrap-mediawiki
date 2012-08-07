@@ -113,7 +113,7 @@ class BootstrapMW_Template extends QuickTemplate {
 
         <?php
         if ( count( $this->data['content_actions']) > 0 ) {
-          $content_nav = $this->get_array_links( $this->data['content_actions'], '<i class="icon-page icon-white"></i> Page', 'page' );
+          $content_nav = $this->get_array_links( $this->data['content_actions'], '<i class="icon-file icon-white"></i> Page', 'page' );
         ?>
           <ul class="nav pull-right content-actions"><?php echo $content_nav; ?></ul>
         <?php
