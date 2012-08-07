@@ -143,65 +143,62 @@ class BootstrapMW_Template extends QuickTemplate {
 <!-- topbar -->
 
 
-<div id="wiki-outer-body">
-    <div id="wiki-body" class="container-fluid">
-      <?php if( $this->data['sitenotice'] ) { ?><div id="siteNotice" class="alert-message warning"><?php $this->html('sitenotice') ?></div><?php } ?>
-			<?php if ( $this->data['undelete'] ): ?>
-			<!-- undelete -->
-			<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
-			<!-- /undelete -->
-			<?php endif; ?>
-			<?php if($this->data['newtalk'] ): ?>
-			<!-- newtalk -->
-			<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
-			<!-- /newtalk -->
-			<?php endif; ?>
+<div id="wiki-body" class="container-fluid">
+  <?php if( $this->data['sitenotice'] ) { ?><div id="siteNotice" class="alert-message warning"><?php $this->html('sitenotice') ?></div><?php } ?>
+  <?php if ( $this->data['undelete'] ): ?>
+  <!-- undelete -->
+  <div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
+  <!-- /undelete -->
+  <?php endif; ?>
+  <?php if($this->data['newtalk'] ): ?>
+  <!-- newtalk -->
+  <div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
+  <!-- /newtalk -->
+  <?php endif; ?>
 
-			<div class="pagetitle page-header">
-				<h1><?php $this->html( 'title' ) ?> <small><?php $this->html('subtitle') ?></small></h1>
-			</div>	
+  <div class="pagetitle page-header">
+    <h1><?php $this->html( 'title' ) ?> <small><?php $this->html('subtitle') ?></small></h1>
+  </div>	
 
-			<div class="body">
-			<?php $this->html( 'bodytext' ) ?>
-			</div>
+  <div class="body">
+  <?php $this->html( 'bodytext' ) ?>
+  </div>
 
-			<?php if ( $this->data['catlinks'] ): ?>
-			<div class="category-links">
-			<!-- catlinks -->
-			<?php $this->html( 'catlinks' ); ?>
-			<!-- /catlinks -->
-			</div>
-			<?php endif; ?>
-			<?php if ( $this->data['dataAfterContent'] ): ?>
-			<div class="data-after-content">
-			<!-- dataAfterContent -->
-			<?php $this->html( 'dataAfterContent' ); ?>
-			<!-- /dataAfterContent -->
-			</div>
-			<?php endif; ?>
-    </div><!-- container -->
-</div>
-    <div class="bottom">
-      <div class="container-fluid">
-        <?php
-        $this->includePage('Bootstrap:Footer');
-        ?>
-      
-        <footer>
-          <p>&copy; <?php echo date('Y'); ?> by <a href="<?php echo (isset($wgCopyrightLink) ? $wgCopyrightLink : 'http://www.plymouth.edu'); ?>"><?php echo (isset($wgCopyright) ? $wgCopyright : 'Plymouth State University'); ?></a> 
-          	&bull; Powered by <a href="http://mediawiki.org">MediaWiki</a> 
-          </p>
-        </footer>
-      </div><!-- container -->
-    </div><!-- bottom -->
+  <?php if ( $this->data['catlinks'] ): ?>
+  <div class="category-links">
+  <!-- catlinks -->
+  <?php $this->html( 'catlinks' ); ?>
+  <!-- /catlinks -->
+  </div>
+  <?php endif; ?>
+  <?php if ( $this->data['dataAfterContent'] ): ?>
+  <div class="data-after-content">
+  <!-- dataAfterContent -->
+  <?php $this->html( 'dataAfterContent' ); ?>
+  <!-- /dataAfterContent -->
+  </div>
+  <?php endif; ?>
 
-		<?php $js_file = dirname( $_SERVER['SCRIPT_FILENAME'] ) . '/skins/' . $this->skin->skinname . '/js/site.min.js'; ?>
-  	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/js/site.min.js?v=<?php echo filemtime( $js_file ); ?>"></script>
-  	<script type="text/javascript" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/google-code-prettify/prettify.js"></script>
+<hr>
+
+<footer>
+<?php $this->includePage('Bootstrap:Footer'); ?>
+</footer>
+
+
+</div><!-- container -->
+
+<?php $js_file = dirname( $_SERVER['SCRIPT_FILENAME'] ) . '/skins/' . $this->skin->skinname . '/js/site.min.js'; ?>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/js/site.min.js?v=<?php echo filemtime( $js_file ); ?>"></script>
+<script type="text/javascript" src="<?php $this->text('stylepath') ?>/<?php $this->text('stylename') ?>/google-code-prettify/prettify.js"></script>
+
 </body>
 </html>
+
+
+
 <?php
 	}
 	
