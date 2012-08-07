@@ -142,20 +142,7 @@ class BootstrapMW_Template extends QuickTemplate {
 </div>
 <!-- topbar -->
 
-<?php
-if( $subnav_links = $this->get_page_links('Bootstrap:Subnav') ) {
-?>
-<div class="subnav subnav-fixed">
-	<select id="subnav-select">
-	<?php echo $this->nav_select( $subnav_links ); ?>
-	</select>
-	<ul class="nav nav-pills">
-	<?php echo $this->nav( $subnav_links ); ?>
-	</ul>
-</div>
-<?php
-}//end if
-?>
+
 <div id="wiki-outer-body">
     <div id="wiki-body" class="container-fluid">
       <?php if( $this->data['sitenotice'] ) { ?><div id="siteNotice" class="alert-message warning"><?php $this->html('sitenotice') ?></div><?php } ?>
